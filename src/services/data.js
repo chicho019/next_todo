@@ -34,3 +34,20 @@ export async function editIsChecked(todoId, isChecked){
         }
     )
 }
+
+export async function editTodoOnBackend(todoId, newTask) {
+    console.log(`Sending request to /api/editTask/${todoId} with task: ${newTask}`);
+    const response = await fetch(`${localServerUrl}/editTask/${todoId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ task: newTask }),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        console.error(`Failed to update todo: ${response.status}`, errorData);
+        throw new Error(`Failed to update todo: ${response.status}`);
+    }
+
+    return response.json();
+}
