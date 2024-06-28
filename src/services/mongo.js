@@ -4,4 +4,4 @@ const uri = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PAS
 const client = new MongoClient(uri);
 const database = client.db("todo_app");
 
-export const todos = database.collection("todos");
+export const todos = database.collection("todos"); 

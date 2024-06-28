@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { deleteTodoOnBackend, editIsChecked, editTodoOnBackend } from "@/services/data";
+import TodoItem from "@/komponentebi/TodoItem";
+
 
 export default function TodoSia({ todosList, reloadTodosList }) {
     const [editingId, setEditingId] = useState(null);
@@ -38,75 +40,49 @@ export default function TodoSia({ todosList, reloadTodosList }) {
     const uncheckedTodos = todosList.filter(todo => !todo.completed);
 
     return (
-        <div className="todoList">
-            {uncheckedTodos.map((todo) => (
-                <div key={todo._id} className="todoItem">
-                    <div className="todoCheckbox">
-                        <input
-                            checked={todo.completed ? true : false}
-                            onChange={(event) => {
-                                handleCheckboxClick(event.target.checked, todo._id);
-                            }}
-                            type="checkbox"
-                            data-todoid={todo._id}
+        <div className="todoApp">
+            <div className="todoHeader">Todo List</div>
+            <div className="todoBody">
+                <div className="todoList">
+                    {uncheckedTodos.map((todo) => (
+                        <TodoItem
+                            key={todo._id}
+                            todo={todo}
+                            editingId={editingId}
+                            newTask={newTask}
+                            setEditingId={setEditingId}
+                            setNewTask={setNewTask}
+                            handleEditSubmit={handleEditSubmit}
+                            handleCheckboxClick={handleCheckboxClick}
+                            deleteTodo={deleteTodo}
                         />
-                    </div>
-                    <div className="todoName">
-                        {editingId === todo._id ? (
-                            <input
-                                type="text"
-                                value={newTask}
-                                onChange={(e) => setNewTask(e.target.value)}
-                                onBlur={() => handleEditSubmit(todo._id)}
-                                onKeyDown={(e) => {
-                                    if (e.key === 'Enter') {
-                                        handleEditSubmit(todo._id);
-                                    }
-                                }}
-                                autoFocus
-                            />
-                        ) : (
-                            <span>{todo.task}</span>
-                        )}
-                    </div>
-                    <div className="actions">
-                        {editingId === todo._id ? (
-                            <button onClick={() => handleEditSubmit(todo._id)}>Save</button>
-                        ) : (
-                            <>
-                                <span className="btnEdit" onClick={() => { setEditingId(todo._id); setNewTask(todo.task); }}>Edit</span>
-                                <span className="btnDelete" onClick={() => deleteTodo(todo._id)}>Delete</span>
-                            </>
-                        )}
-                    </div>
-                </div>
-            ))}
-            <button onClick={() => setShowCheckedTodos(!showCheckedTodos)}>
-                {showCheckedTodos ? 'Hide Completed Todos' : 'Show Completed Todos'}
-            </button>
-            {showCheckedTodos && (
-                <div className="checkedTodoList">
-                    {checkedTodos.length === 0 ? (
-                        <p>No completed todos</p>
-                    ) : (
-                        checkedTodos.map((todo) => (
-                            <div key={todo._id} className="todoItem">
-                                <div className="todoCheckbox">
-                                    <input
-                                        checked={true}
-                                        type="checkbox"
-                                        disabled
+                    ))}
+                    <button className="toggleButton" onClick={() => setShowCheckedTodos(!showCheckedTodos)}>
+                        {showCheckedTodos ? 'Hide Completed Todos' : 'Show Completed Todos'}
+                    </button>
+                    {showCheckedTodos && (
+                        <div className="checkedTodoList">
+                            {checkedTodos.length === 0 ? (
+                                <p>No completed todos</p>
+                            ) : (
+                                checkedTodos.map((todo) => (
+                                    <TodoItem
+                                        key={todo._id}
+                                        todo={todo}
+                                        editingId={editingId}
+                                        newTask={newTask}
+                                        setEditingId={setEditingId}
+                                        setNewTask={setNewTask}
+                                        handleEditSubmit={handleEditSubmit}
+                                        handleCheckboxClick={handleCheckboxClick}
+                                        deleteTodo={deleteTodo}
                                     />
-                                </div>
-                                <div className="todoName">{todo.task}</div>
-                                <div className="actions">
-                                    <span className="btnDelete" onClick={() => deleteTodo(todo._id)}>Delete</span>
-                                </div>
-                            </div>
-                        ))
+                                ))
+                            )}
+                        </div>
                     )}
                 </div>
-            )}
+            </div>
         </div>
     );
 }

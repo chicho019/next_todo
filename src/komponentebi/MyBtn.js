@@ -8,4 +8,4 @@ export default function Button({ serverUrl, inputValue, setTodosList, reloadTodo
     }
 
     return <button class="submitBtn" onClick={handleSubmitClick}>Submit</button>
-}
+} 

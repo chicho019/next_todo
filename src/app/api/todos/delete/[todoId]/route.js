@@ -11,4 +11,4 @@ export async function POST(req, { params }) {
     const result = await todos.deleteOne({ _id: new ObjectId(todoId) });
 
     return new Response(JSON.stringify({ message: "Todo deleted successfully" }));
-}
+} 

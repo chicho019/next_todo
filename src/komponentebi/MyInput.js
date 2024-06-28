@@ -5,4 +5,4 @@ export default function Input({ inputValue, setInputValue }){
     }
 
     return <input class="textInput" onChange={handleInputChange} value={inputValue} type="text" placeholder="Enter todo here" />
-}
+} 

@@ -9,4 +9,4 @@ export default function CreateTodo({ setTodosList, reloadTodosList }){
         <Input inputValue={inputValue} setInputValue={setInputValue} />
         <MyBtn inputValue={inputValue} setTodosList={setTodosList} reloadTodosList={reloadTodosList} />
     </div>
-}
+} 

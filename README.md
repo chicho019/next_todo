@@ -4,4 +4,4 @@
 
 # Run the app
 1. Run `npm run dev`
-2. Open your browser at `http://localhost:3000`
+2. Open your browser at `http://localhost:3000` 

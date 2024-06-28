@@ -12,4 +12,4 @@ export async function POST(request) {
 
     // 3. Return response "Todo created successfully"
     return Response.json(result);
-}
+} 

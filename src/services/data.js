@@ -50,4 +50,4 @@ export async function editTodoOnBackend(todoId, newTask) {
     }
 
     return response.json();
-}
+} 

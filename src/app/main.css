@@ -1,8 +1,13 @@
+/* main.css */
+
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
 }
 
 .container {
@@ -15,19 +20,21 @@ body, html {
 
 .todoApp {
     width: 70%;
-    height: 80%;
+    height: auto;
+    max-width: 600px;
     background-color: white;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(66, 65, 65);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
 .todoHeader {
-    background-color: #009688;
-    font-size: 30px;
+    background-color: #4CAF50;
+    font-size: 24px;
     display: flex;
     align-items: center;
-    padding: 25px 20px;
+    justify-content: center;
+    padding: 20px;
     color: white;
 }
 
@@ -37,29 +44,37 @@ body, html {
 
 .createTodo {
     display: flex;
-    justify-content: space-between;
-}
-
-.todoList {
-    margin-top: 30px;
-}
-
-.createTodo input {
-    width: 70%;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .createTodo button {
-    width: 25%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.createTodo button:hover {
+    background-color: #45a049;
+}
+
+.todoList {
+    margin-top: 20px;
 }
 
 .todoItem {
     display: flex;
     align-items: center;
-    padding: 20px 0px;
+    padding: 15px 10px;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .todoItem:nth-child(odd) {
-    background-color: rgb(230, 227, 227);
+    background-color: #f9f9f9;
 }
 
 .todoCheckbox {
@@ -72,10 +87,50 @@ body, html {
 
 .actions {
     width: 20%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btnEdit, .btnDelete {
+    cursor: pointer;
+    color: #4CAF50;
+    transition: color 0.3s ease;
+}
+
+.btnEdit:hover, .btnDelete:hover {
+    color: #45a049;
 }
 
 input, button {
-    border-style: solid;
-    border-width: 1px;
+    border: none;
+    outline: none;
     padding: 0 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.toggleButton {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.toggleButton:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.checkedTodoList {
+    margin-top: 20px;
 }
